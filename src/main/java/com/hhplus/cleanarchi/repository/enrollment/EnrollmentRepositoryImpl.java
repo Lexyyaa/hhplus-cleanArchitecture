@@ -6,6 +6,8 @@ import com.hhplus.cleanarchi.entity.user.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 @RequiredArgsConstructor
 public class EnrollmentRepositoryImpl implements EnrollmentRepository{
@@ -18,5 +20,10 @@ public class EnrollmentRepositoryImpl implements EnrollmentRepository{
     @Override
     public Enrollment saveWithLock(Enrollment enrollment) {
         return jpaEnrollmentRepository.save(enrollment);
+    }
+
+    @Override
+    public List<Enrollment> getUserEnrollments(Long userId) {
+        return jpaEnrollmentRepository.findAllByUser_UserId(userId);
     }
 }

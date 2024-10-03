@@ -1,4 +1,4 @@
-package com.hhplus.cleanarchi.dto;
+package com.hhplus.cleanarchi.dto.course;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
