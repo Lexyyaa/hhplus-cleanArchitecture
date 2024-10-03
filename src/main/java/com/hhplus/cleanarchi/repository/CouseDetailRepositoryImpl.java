@@ -2,16 +2,16 @@ package com.hhplus.cleanarchi.repository;
 
 import com.hhplus.cleanarchi.entity.CourseDetail;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Component
+@Repository
 @RequiredArgsConstructor
-public class CouseDetailImpl implements CourseDetailRepository {
+public class CouseDetailRepositoryImpl implements CourseDetailRepository {
 
-    private JPACourseDetailRepository jPACourseDetailRepository;
+    private final JPACourseDetailRepository jPACourseDetailRepository;
 
     @Override
     public List<CourseDetail> findAvailableCoursesByDateAndCapacity(LocalDate date) {

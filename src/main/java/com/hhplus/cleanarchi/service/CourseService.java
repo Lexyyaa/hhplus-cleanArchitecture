@@ -4,7 +4,6 @@ import com.hhplus.cleanarchi.dto.CourseResponseDTO;
 import com.hhplus.cleanarchi.entity.Course;
 import com.hhplus.cleanarchi.entity.CourseDetail;
 import com.hhplus.cleanarchi.repository.CourseDetailRepository;
-import com.hhplus.cleanarchi.repository.CouseDetailImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +15,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class CourseService {
 
-    private final CouseDetailImpl couseDetailImpl;
+    private final CourseDetailRepository courseDetailRepository;
 
     public List<CourseResponseDTO> getAvailableCourses(LocalDate date) {
-        List<CourseDetail> availableCourseDetails = couseDetailImpl.findAvailableCoursesByDateAndCapacity(date);
+        List<CourseDetail> availableCourseDetails = courseDetailRepository.findAvailableCoursesByDateAndCapacity(date);
 
         return availableCourseDetails.stream()
                 .collect(Collectors.groupingBy(CourseDetail::getCourse))

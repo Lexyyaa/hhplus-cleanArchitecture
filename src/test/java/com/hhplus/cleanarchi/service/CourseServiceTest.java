@@ -3,7 +3,7 @@ package com.hhplus.cleanarchi.service;
 import com.hhplus.cleanarchi.dto.CourseResponseDTO;
 import com.hhplus.cleanarchi.entity.Course;
 import com.hhplus.cleanarchi.entity.CourseDetail;
-import com.hhplus.cleanarchi.repository.CouseDetailImpl;
+import com.hhplus.cleanarchi.repository.CourseDetailRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,9 +21,9 @@ import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class CourseServiceTest {
-    
+
     @Mock
-    private CouseDetailImpl courseDetailImpl;
+    private CourseDetailRepository courseDetailRepository;
 
     @InjectMocks
     private CourseService courseService;
@@ -37,7 +37,7 @@ public class CourseServiceTest {
         Course mockCourse = new Course(1L, "강사명1", "강의명1");
         CourseDetail mockCourseDetail = new CourseDetail(1L, mockCourse, testDate.minusDays(1), testDate.plusDays(5), 20);
 
-        when(courseDetailImpl.findAvailableCoursesByDateAndCapacity(testDate))
+        when(courseDetailRepository.findAvailableCoursesByDateAndCapacity(testDate))
                 .thenReturn(Arrays.asList(mockCourseDetail));
 
         // When
@@ -58,7 +58,7 @@ public class CourseServiceTest {
         LocalDate testDate = LocalDate.of(2024, 10, 2);
 
         // Repository가 빈 리스트를 반환하는 경우
-        when(courseDetailImpl.findAvailableCoursesByDateAndCapacity(testDate))
+        when(courseDetailRepository.findAvailableCoursesByDateAndCapacity(testDate))
                 .thenReturn(Collections.emptyList());
 
         // When
