@@ -6,13 +6,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Course {
 
     @Id
@@ -26,6 +24,4 @@ public class Course {
     @Column(name = "course_name", nullable = false)
     private String courseName;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private List<CourseDetail> courseDetails = new ArrayList<>();
 }
