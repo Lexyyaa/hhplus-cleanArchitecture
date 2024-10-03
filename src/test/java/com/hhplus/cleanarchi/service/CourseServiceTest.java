@@ -1,9 +1,10 @@
 package com.hhplus.cleanarchi.service;
 
 import com.hhplus.cleanarchi.dto.CourseResponseDTO;
-import com.hhplus.cleanarchi.entity.Course;
-import com.hhplus.cleanarchi.entity.CourseDetail;
-import com.hhplus.cleanarchi.repository.CourseDetailRepository;
+import com.hhplus.cleanarchi.entity.course.Course;
+import com.hhplus.cleanarchi.entity.course.CourseDetail;
+import com.hhplus.cleanarchi.repository.course.CourseDetailRepository;
+import com.hhplus.cleanarchi.service.course.CourseService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -1,7 +1,7 @@
-package com.hhplus.cleanarchi.controller;
+package com.hhplus.cleanarchi.controller.course;
 
 import com.hhplus.cleanarchi.dto.CourseResponseDTO;
-import com.hhplus.cleanarchi.service.CourseService;
+import com.hhplus.cleanarchi.service.course.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
