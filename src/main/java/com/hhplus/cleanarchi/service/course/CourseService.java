@@ -1,6 +1,6 @@
 package com.hhplus.cleanarchi.service.course;
-import com.hhplus.cleanarchi.dto.CourseDetailResponseDTO;
-import com.hhplus.cleanarchi.dto.CourseResponseDTO;
+import com.hhplus.cleanarchi.dto.course.CourseDetailResponseDTO;
+import com.hhplus.cleanarchi.dto.course.CourseResponseDTO;
 import com.hhplus.cleanarchi.entity.course.Course;
 import com.hhplus.cleanarchi.entity.course.CourseDetail;
 import com.hhplus.cleanarchi.repository.course.CourseDetailRepository;

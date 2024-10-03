@@ -1,6 +1,6 @@
 package com.hhplus.cleanarchi.controller.course;
 
-import com.hhplus.cleanarchi.dto.CourseResponseDTO;
+import com.hhplus.cleanarchi.dto.course.CourseResponseDTO;
 import com.hhplus.cleanarchi.service.course.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +18,9 @@ public class CourseController {
 
     private final CourseService courseService;
 
+    /**
+     * 신청가능한 강의 목록 조회
+     */
     @GetMapping("/available")
     public List<CourseResponseDTO> getAvailableCourses(@RequestParam("date") String dateStr) {
         LocalDate date = LocalDate.parse(dateStr);
