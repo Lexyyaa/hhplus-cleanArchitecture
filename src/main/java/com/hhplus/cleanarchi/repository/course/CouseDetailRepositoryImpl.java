@@ -28,4 +28,11 @@ public class CouseDetailRepositoryImpl implements CourseDetailRepository {
     public CourseDetail saveWithLock(CourseDetail courseDetail) {
         return jPACourseDetailRepository.save(courseDetail);
     }
+
+    @Override
+    public CourseDetail findById(Long courseDetailId) {
+        return jPACourseDetailRepository.findById(courseDetailId).orElseThrow(
+                () -> new RuntimeException("해당 강의가 존재하지 않거나 신청 기간이 아닙니다.")
+        );
+    }
 }
