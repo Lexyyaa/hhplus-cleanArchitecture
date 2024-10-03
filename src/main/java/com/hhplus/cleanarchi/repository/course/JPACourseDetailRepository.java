@@ -15,7 +15,7 @@ public interface JPACourseDetailRepository extends JpaRepository<CourseDetail, L
     @Query("SELECT cd FROM CourseDetail cd WHERE :date BETWEEN cd.enrollStartDate AND cd.enrollEndDate AND cd.enrollCount < 30")
     List<CourseDetail> findAvailableCoursesByDateAndCapacity(@Param("date") LocalDate date);
 
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Lock(LockModeType.PESSIMISTIC_WRITE) //
     CourseDetail save(CourseDetail enrollment);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)

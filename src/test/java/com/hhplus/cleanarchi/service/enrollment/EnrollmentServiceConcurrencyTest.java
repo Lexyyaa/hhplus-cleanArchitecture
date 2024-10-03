@@ -1,15 +1,10 @@
 package com.hhplus.cleanarchi.service.enrollment;
 
-import com.hhplus.cleanarchi.controller.enrollment.EnrollmentController;
-import com.hhplus.cleanarchi.dto.enroll.EnrollResponseDTO;
 import com.hhplus.cleanarchi.entity.course.CourseDetail;
 import com.hhplus.cleanarchi.entity.enrollment.Enrollment;
-import com.hhplus.cleanarchi.entity.user.User;
 import com.hhplus.cleanarchi.repository.course.CourseDetailRepository;
 import com.hhplus.cleanarchi.repository.enrollment.EnrollmentRepository;
 import com.hhplus.cleanarchi.repository.user.UserRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,12 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,9 +33,6 @@ public class EnrollmentServiceConcurrencyTest {
 
     @Autowired
     private EnrollmentRepository enrollmentRepository;
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Test
     @Transactional
