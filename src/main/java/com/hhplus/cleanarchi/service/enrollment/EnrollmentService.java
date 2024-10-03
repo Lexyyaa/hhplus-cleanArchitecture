@@ -52,7 +52,6 @@ public class EnrollmentService {
 
         enrollmentRepository.saveWithLock(enrollment);
 
-
         // 6. 신청 인원 증가 (동시성 제어)
         courseDetail.setEnrollCount(courseDetail.getEnrollCount() + 1);
         courseDetailRepository.saveWithLock(courseDetail);

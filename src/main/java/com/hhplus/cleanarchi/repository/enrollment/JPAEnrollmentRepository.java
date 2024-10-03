@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface JPAEnrollmentRepository extends JpaRepository<Enrollment, Long> {
     boolean existsByUserAndCourseDetail(User user, CourseDetail courseDetail);
-    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Lock(LockModeType.PESSIMISTIC_WRITE) //
     Enrollment save(Enrollment enrollment);
     List<Enrollment> findAllByUser_UserId(Long userId);
 }
