@@ -1,16 +1,20 @@
 package com.hhplus.cleanarchi.service.enrollment;
 
+import com.hhplus.cleanarchi.dto.course.CourseDetailResponseDTO;
+import com.hhplus.cleanarchi.dto.enroll.EnrollResponseDTO;
 import com.hhplus.cleanarchi.entity.course.CourseDetail;
 import com.hhplus.cleanarchi.entity.enrollment.Enrollment;
 import com.hhplus.cleanarchi.entity.user.User;
 import com.hhplus.cleanarchi.repository.course.CourseDetailRepository;
 import com.hhplus.cleanarchi.repository.enrollment.EnrollmentRepository;
 import com.hhplus.cleanarchi.repository.user.UserRepository;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +25,7 @@ public class EnrollmentService {
     private final EnrollmentRepository enrollmentRepository;
 
     @Transactional
-    public Enrollment enrollCourse(Long userId, Long courseDetailId) {
+    public EnrollResponseDTO enrollCourse(Long userId, Long courseDetailId) {
         // 1. 사용자 확인
         User user = userRepository.findById(userId);
 
@@ -45,12 +49,34 @@ public class EnrollmentService {
         enrollment.setCourseDetail(courseDetail);
         enrollment.setInstructorName(courseDetail.getCourse().getInstructorName());
         enrollment.setCourseName(courseDetail.getCourse().getCourseName());
+
         enrollmentRepository.saveWithLock(enrollment);
+
 
         // 6. 신청 인원 증가 (동시성 제어)
         courseDetail.setEnrollCount(courseDetail.getEnrollCount() + 1);
         courseDetailRepository.saveWithLock(courseDetail);
 
-        return enrollment;
+        return new EnrollResponseDTO(enrollment.getEnrollmentId(), enrollment.getInstructorName(), enrollment.getCourseName());
+    }
+
+    @Transactional(readOnly = true)
+    public List<EnrollResponseDTO> getUserEnrollments(Long userId) {
+        // 1. 사용자 ID로 신청된 Enrollment 목록 조회
+        List<Enrollment> enrollments = enrollmentRepository.getUserEnrollments(userId);
+
+        // 2. Enrollment 목록을 EnrollResponseDTO로 변환
+        return enrollments.stream()
+                .map(EnrollmentService::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    private static EnrollResponseDTO convertToDto(Enrollment enrollment) {
+        return new EnrollResponseDTO(
+                enrollment.getEnrollmentId(),
+                enrollment.getInstructorName(),
+                enrollment.getCourseName()
+        );
     }
 }
+
