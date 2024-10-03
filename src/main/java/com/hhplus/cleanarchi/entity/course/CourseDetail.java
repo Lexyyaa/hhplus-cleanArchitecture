@@ -1,5 +1,6 @@
-package com.hhplus.cleanarchi.entity;
+package com.hhplus.cleanarchi.entity.course;
 
+import com.hhplus.cleanarchi.entity.course.Course;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
