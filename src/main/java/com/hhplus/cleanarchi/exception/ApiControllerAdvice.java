@@ -11,7 +11,6 @@ class ApiControllerAdvice extends ResponseEntityExceptionHandler {
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
         return ResponseEntity.status(500).body(new ErrorResponse("500", "에러가 발생했습니다."));
     }
-
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity<ErrorResponse> handleException(RuntimeException e) {
         return ResponseEntity.status(500).body(new ErrorResponse("500", e.getMessage()));
